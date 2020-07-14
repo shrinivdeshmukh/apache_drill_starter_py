@@ -75,17 +75,15 @@ services:
       - '2181:2181'
 
   hdfs:
-    image: hdfs-spark-hive:latest
-    # build:
-    #   context: ./spark-hive-docker
-    #   dockerfile: Dockerfile
+    image: hdfs:latest
+    build:
+      context: ./hadoop-docker
+      dockerfile: Dockerfile
     environment:
       HADOOP_USER: ${HADOOP_USER}
     ports:
       - 50070:50070
       - 8020:8020
-      - 8088:8088
-      - 8032:8032
     volumes:
       - hdfs:/hadoop/hdfs
       - mysql:/mnt/mysql
@@ -98,8 +96,6 @@ services:
     environment:
       JAVA_HOME: /usr/local/openjdk-8
       HADOOP_HOME: /usr/local/hadoop
-      SPARK_HOME: /usr/local/spark
-      HIVE_HOME: /usr/local/hive
     working_dir: /usr/local/hadoop/
 
   mysql:
