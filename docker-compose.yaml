@@ -1,6 +1,21 @@
 version: '3.5'
 
 services:
+
+  app:
+    image: drill_web:latest
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    working_dir: /web
+    ports:
+      - 8000:80
+    networks:
+      drillspark:
+        ipv4_address: 10.3.0.7
+    volumes:
+      - ./odbcmapr:/opt/mapr/
+    command: "uvicorn --host 0.0.0.0 --port 80 main:app"
   
   drill1:
     image: drill:latest
@@ -75,7 +90,7 @@ services:
       - '2181:2181'
 
   hdfs:
-    image: hdfs:latest
+    image: hadoop:latest
     build:
       context: ./hadoop-docker
       dockerfile: Dockerfile
