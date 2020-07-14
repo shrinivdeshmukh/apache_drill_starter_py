@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Messages [
+    <!ELEMENT Messages (Package*)>
+
+    <!ELEMENT Package (Error*)>
+    <!ATTLIST Package ID CDATA #REQUIRED>
+    <!ATTLIST Package DefaultComponent CDATA #REQUIRED>
+
+    <!ELEMENT Error (#PCDATA)>
+    <!ATTLIST Error Key ID #REQUIRED>
+    <!ATTLIST Error Component CDATA #IMPLIED>
+    <!ATTLIST Error NativeErrorCode CDATA #REQUIRED>
+    <!ATTLIST Error Params CDATA "0">
+]>
+
+<Messages>
+    <!-- #################################################################################### -->
+    <Package ID="101" DefaultComponent="Drill">
+      <!-- Configuration Drill Client error messages. -->
+
+        <!-- Error thrown if Drill Client cannot connect to zookeeper. -->
+        <Error Key="DRClientZookeeperFailure" Params="1" NativeErrorCode="10">Failure occurred while trying to connect to %1%</Error>
+      
+        <!-- Error thrown if Drill Client cannot connect to the drillbit. -->
+        <Error Key="DRClientConnectionFailure" Params="2" NativeErrorCode="20">Failure occurred while trying to connect to %1%. (Details: %2%)</Error>
+
+        <!-- Error thrown if Drill Client cannot connect to the drillbit. -->
+        <Error Key="DRClientHandshakeFailure" Params="2" NativeErrorCode="30"> Handshake failure occurred while trying to connect to %1%. Server message: %2%</Error>
+
+        <!-- Error thrown if Drill Client cannot connect to the drillbit. -->
+        <Error Key="DRClientAuthenticationFailure" Params="1" NativeErrorCode="40"> User authentication failed. Server message: %1%</Error>
+
+        <!-- Error thrown if Drill Client cannot connect to the drillbit. -->
+        <Error Key="DRClientBadRPCVersion" Params="1" NativeErrorCode="50"> Server and driver RPC version is incompatible. Please update the server and/or driver to the latest version. Server message: %1%.</Error>
+
+        <!-- Error thrown if Drill Client handshake times out. -->
+        <Error Key="DRClientHandshakeTimeout" Params="2" NativeErrorCode="60"> Handshake timed out (HandshakeTimeout=%2%) while trying to connect to %1%. Check whether Drillbit is running in a healthy state or increase the timeout.</Error>
+
+        <!-- Error thrown if the hostname cannot be resolved. -->
+        <Error Key="DRClientHostnameResolutionFailure" Params="1" NativeErrorCode="70">The hostname of '%1%' cannot be resolved. Please check your DNS setup or connect directly to Drillbit.</Error>
+      
+      <!-- Configuration DRConnection error/warning messages. -->
+        <!-- Warning if the value of TimestampTZDisplayTimezone is not valid. -->
+        <Error Key="DRInvalidTimestampTZDisplayTimezone" Params="1" NativeErrorCode="100">Invalid value of TimestampTZDisplayTimezone('utc' or 'local'): '%1%'. Use default value 'local'.</Error>
+
+      <!-- Configuration Dialog error messages. -->
+        <!-- Error thrown when an error occurs while trying to connect. -->
+        <Error Key="DRConnectionErrorGen" NativeErrorCode="1000">Unknown error occurred while trying to connect.</Error>
+
+        <!-- Error thrown when an error occurs while trying to connect. -->
+        <Error Key="DRConnectionError" Params="1" NativeErrorCode="1010">Error occurred while trying to connect: %1%</Error>
+
+        <!-- Error thrown when an error occurs while trying to fetch the catalogs. -->
+        <Error Key="DRCatalogError" Params="1" NativeErrorCode="1020">Error occurred while trying to fetch the catalogs: %1%</Error>
+
+        <!-- Error thrown when an error occurs while trying to fetch the schemas. -->
+        <Error Key="DRSchemaError" Params="1" NativeErrorCode="1030">Error occurred while trying to fetch the schemas: %1%</Error>
+
+        <!-- Configuration Query Execution error messages. -->
+        <!-- Error thrown if Drill fails to execute a query. -->
+        <Error Key="DRQueryExecFailure" Params="1" NativeErrorCode="1040">Drill failed to execute the query: %1%</Error>
+
+        <!-- Error thrown if query timed out. -->
+        <Error Key="DRQueryTimeout" Params="2" NativeErrorCode="1050">Query timed out (QueryTimeout=%2%): %1%</Error>
+
+        <!-- Error thrown if the application cancel a query. -->
+        <Error Key="DRQueryCancel" Params="1" NativeErrorCode="1060">Cancel the query: %1%</Error>
+
+        <!-- Error thrown if drill client get error other than timeout and failure. -->
+        <Error Key="DRQueryMiscFailure" Params="1" NativeErrorCode="1070">Drill fails to execute the query with error %1% </Error>
+
+        <!-- Warning thrown if Drill send unsupported data types. -->
+        <Error Key="DRUnsupportedDataTypes" Params="1" NativeErrorCode="2000">Result set contains unsupported Drill data types: %1% </Error>
+
+        <!-- Warning thrown if Drill send unsupported data types. -->
+        <Error Key="DRSchemaChanged" Params="1" NativeErrorCode="2010">Schema Changed in the result set: %1% </Error>
+
+        <!-- Error thrown when drill client broadcasts com error. -->
+        <Error Key="DRCommError" Params="1" NativeErrorCode="2020">Connection no longer valid: %1% </Error>
+        
+        <!-- Error thrown when drill client is out of memory. -->
+        <Error Key="DRClientOutOfMem" Params="1" NativeErrorCode="2030">Drill client out of memory: %1% </Error>
+        
+        <!-- Error thrown when drill fail to process requset sent by catalog function api. -->
+        <Error Key="DRMetadataAPIFailure" Params="1" NativeErrorCode="2040">Catalog function API call failure: %1% </Error>
+        
+        <!-- Error thrown when SSPI or GSSAPI plugin has already been loaded but the user attempts to load the other one. -->
+        <Error Key="DRAuthKerberosPlugin" Params="1" NativeErrorCode="2050">The following Kerberos plugin for SASL has already been loaded: %1% </Error>
+
+        <!-- Error thrown when an unknown authentication type is used in the connection. -->
+        <Error Key="DRUnknownAuthMech" Params="1" NativeErrorCode="2060">Invalid AuthenticationType value specified in the connection string: %1%.</Error>
+
+        <!-- Error thrown when enabling SSL for the connection when connecting to a server that has not enabled SSL or if server has been configured to use TLS protocol version that is different from what the TLSProtocol specified.-->
+        <Error Key="DRSSLGenericFailure" Params="1" NativeErrorCode="2070">Cannot enable SSL for the connection when connecting to a server that has not enabled SSL. If the server has SSL enabled, please check if it has been configured to use a SSL protocol version that matches the protocol version specified for the connection. The exact SSL protocol version allowed for the connection is: %1%.</Error>
+    </Package>
+</Messages>

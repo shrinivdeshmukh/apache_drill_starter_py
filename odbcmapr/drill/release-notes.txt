@@ -1,0 +1,466 @@
+==============================================================================
+Simba Drill ODBC Driver with SQL Connector Release Notes
+==============================================================================
+
+The release notes provide details of enhancements, features, and known 
+issues in Simba Drill ODBC Driver 1.3.22, as well as the version history.
+
+
+1.3.22 ======================================================================
+
+Released 2018-08-15
+
+Enhancements & New Features
+
+ * [DIRAC-1175] Support for Drill VARDECIMAL data
+
+   The driver now supports the VARDECIMAL data type from Drill. Data of this 
+   type is mapped to the SQL type SQL_DECIMAL.
+
+ * [DIRAC-1180] Default user name for No Authentication
+
+   If you specify an authentication type of No Authentication, the driver now 
+   uses a default user name of "anonymous".
+
+ * [DIRAC-1174] Updated Drill C++ Client
+
+   The Drill C++ client has been updated to version 1.14.0. In addition, the 
+   following patches have been applied to the Drill C++ Client: 
+   DRILL-6610 and DRILL-5364.
+
+
+Known Issues
+The following are known issues that you may encounter due to limitations in 
+the data source, the driver, or an application.
+
+ * Drillbit sometimes terminates unexpectedly.
+ 
+   Occasionally, a Drillbit will stop working and then drop the connection 
+   after running queries for an extended period of time. If this problem 
+   occurs, then you will need to restart the Drillbit and open up a new 
+   connection. You can determine the state of the Drillbit by connecting to 
+   it or clicking the "Test" button in the DSN Setup dialog box.
+
+ * ZooKeeper does not accurately detect the status of a Drill cluster.
+ 
+   ZooKeeper does not detect the status of the Drillbits within a cluster, 
+   so it will continue to include non-working Drillbits in the cluster and 
+   make the Drillbits available for connections. For example, Drillbits that 
+   are unresponsive to Drill client or SQLLine will remain as part of the 
+   cluster. An unresponsive Drillbit can cause the Drill client to time out 
+   and then reconnect to the cluster. To determine which Drillbit in the 
+   cluster is causing the issue, check the Drill client logs, which log the 
+   details of the most recently attempted Drillbit connections.
+
+ * In some cases, iODBCTest does not handle SQL_SUCCESS_WITH_INFO correctly.
+ 
+   SQL_SUCCESS_WITH_INFO will cause iODBCTest to stop retrieving data if the 
+   data is one of the following:
+   - Data where the schema has changed
+   - HBase tables that span multiple regions
+
+   This issue does not occur in other applications.
+
+ * The .NET TreeView control sometimes automatically selects the first item 
+   in the control.
+   
+   Drill Explorer uses the .NET TreeView control, and this issue sometimes 
+   causes a false preview of the first table/file/directory in the Schemas 
+   pane to appear. The behavior is harmless and does not affect the 
+   integrity of any data or operations.
+   
+   For more information about this issue, see the following thread on Stack 
+   Overflow:
+   http://stackoverflow.com/questions/800230/windows-forms-treeview-always-selects-a-node-on-focus
+
+ * Microsoft Excel does not allow reserved keywords to be used as column names.
+ 
+   As a work around, do one of the following:
+   - Create a SQL view using non-reserved keywords as column names.
+   - In the Data Connection Wizard in Excel, before retrieving the data, 
+     modify the SQL query to add back quotes (`) around the column name.
+   - Use Microsoft Query to retrieve non-problematic columns and then 
+     modify the query to add the columns with the reserved names, 
+     surrounding the new column names in back quotes (`).
+
+ * On macOS, Microsoft Query does not use schemas when executing queries in 
+   the Query View.
+   
+   As a workaround, specify a default schema in the DSN configuration. 
+   However, when working in the Query View, you will only be able to query 
+   tables that have the specified schema.
+
+   As an alternative workaround, you can write the queries manually and 
+   execute them in the SQL View.
+
+ * On macOS, the Query View in Microsoft Query shows tables but not views.
+ 
+   The macOS version of the driver automatically casts view types into table 
+   types for SQLTables calls.
+
+ * Microsoft SQL Server Linked Server compares metadata from SQLPrepare 
+   with metadata from the actual query execution, causing mismatches.
+   
+   When working with views from SELECT * queries, DFS files, and HBase 
+   tables, the column metadata from Drill reports the data type to be ANY. 
+   As a result, the metadata will not match and queries will fail.
+
+   As a workaround, create views and explicitly state column types. This 
+   issue does not occur with views where the column types are specified.
+
+ * Microsoft Query does not call SQLDoCloseCursor() or SQLFreeStmt() when 
+   executing subsequent queries.
+   
+   As a result of this issue, resources from the previous query are not 
+   cleaned up, which may lead to "out of memory" errors if many queries 
+   are executed.
+
+ * SAP Lumira requires views to work with HBase.
+ 
+   In SAP Lumira, HBase data is collapsed into single columns and not 
+   returned properly. To work with HBase data, create views and execute 
+   queries against those views.
+
+ * SAP Lumira reports "acquisition failed" error.
+ 
+   The Drill ODBC SAP Lumira Extension requires some DLLs as dependencies. 
+   This issue occurs if the dependencies are missing. To resolve this issue, 
+   download and install the Microsoft Visual Studio C++ Redistributable, 
+   which contains the necessary libraries.
+
+ * Parameterized queries are not supported.
+ 
+   You cannot use queries that contain parameters.
+
+ * The Windows version of the driver returns an error when connecting to a 
+   local ZooKeeper quorum.
+   
+   To resolve this issue, add the IP address of the ZooKeeper quorum to the 
+   Windows hosts file. The driver will be able to connect to the local 
+   ZooKeeper quorum successfully.
+
+ * The Disable ASYNC option affects all DSNs.
+ 
+   Using the Disable ASYNC option disables asynchronous operation for all 
+   DSNs.
+
+
+Version History =============================================================
+
+1.3.21 ----------------------------------------------------------------------
+
+Released 2018-07-20
+
+Enhancements & New Features
+
+ * [DIRAC-1157] Minimum TLS support
+
+   You can now specify the minimum version of TLS the driver accepts when
+   authenticating the connection to the data source.
+   
+ * [DIRAC-1158] Standardized log file names
+
+   When logging is enabled, the driver now produces the following log files:
+
+   - A simbadrillodbcdriver.log file that logs driver activity that is not
+     specific to a connection.
+
+   - A simbadrillodbcdriver_connection_[Number].log for each connection made
+     to the database, where [Number] is a number that identifies each log
+	 file. This file logs driver activity that is specific to the connection.
+
+ * [DIRAC 1159] More informative SSL error messages
+
+   The driver now provides more detailed error messages for TLS/SSL errors.
+   
+ * [DIRC-6581] Updated Drill C++ Client
+
+   The following patches have been applied to the Drill C++ Client: 
+   DRILL-6586, DRILL-6610 and DRILL-6587.
+
+
+1.3.20 ----------------------------------------------------------------------
+
+Released 2018-06-29
+
+Enhancements & New Features
+
+ * [DIRAC-1135] Shaded Protobuf library
+ 
+   The driver now uses shaded version of the Protobuf library when compiling
+   the Apache Drill C++ Client. This helps prevent library conflicts.
+   
+ * [DIRAC-1148] Improved connection performance
+ 
+   When connecting to a server that supports the metadata API, the driver now
+   omits the API call for retrieving the catalog name if the name has been
+   specified in the connection information.
+
+
+Resolved Issues
+The following issues have been resolved in Simba Drill ODBC Driver 1.3.20.
+
+ * [DIRAC-1146] The Windows connection dialog stops responding when both the
+   Catalog and Schema dropdowns are used.
+   
+
+1.3.19 ----------------------------------------------------------------------
+
+Released 2018-05-07
+
+Resolved Issues
+The following issues have been resolved in Simba Drill ODBC Driver 1.3.19.
+
+ * [DIRAC-1105] Drill Explorer-generated queries in which the schema 
+   contains multiple workspaces might cause the driver to over-strip the 
+   queries.
+
+ * [DIRAC-1109] [DIRAC-1113] On Windows, large INTERVAL values might cause 
+   the 32-bit driver to terminate unexpectedly.
+
+ * [DIRAC 1122] If the driver is installed in a path that contains Unicode 
+   characters, SASL is not able to locate the authentication plugins.
+
+ * [DIRAC-1123] The driver reports an incomplete list of SQL_STRING_FUNCTION 
+   functions.
+
+ * [DIRAC-1124] The driver reports that it supports cross joins, which are 
+   not supported by the Drill server.
+
+
+1.3.18 ----------------------------------------------------------------------
+
+Released 2018-04-30
+
+Resolved Issues
+The following issues have been resolved in Simba Drill ODBC Driver 1.3.18.
+
+ * The driver fails to find the ODBCMessages.xml file in folder if the 
+   folder name contains Japanese characters.
+
+   
+1.3.17 ----------------------------------------------------------------------
+
+Released 2018-04-06
+
+Enhancements & New Features
+
+ * Error message truncation
+
+   By default, on non-Windows platforms, the driver now truncates displayed 
+   error messages to 384 characters. You can alter these settings by configuring 
+   the advanced properties ForceErrorTruncation and ExceptionBufferSize. For 
+   more information, see the Installation and Configuration Guide.
+
+ * Support for username only authentication
+
+   The driver now supports using only the username for authentication. This
+   method is intended for servers without any authentication enabled and with
+   or without impersonation enabled. 
+ 
+ * Improved metadata consistency across the drivers.
+ 
+   ResultSet metadata has been modified to be more consistent across the
+   driver.
+ 
+ * Improvement to catalog name strip logic (RemoveQryCatalog)
+   
+   Query rewrite logic is improved to make it more robust against string
+   literals and prevent unintentional query rewrites.
+ 
+ * Updated OpenSSL support
+ 
+   The driver now uses OpenSSL library version 1.0.2o.
+ 
+
+Resolved Issues
+The following issues were resolved in Simba Drill ODBC Driver 1.3.17.
+
+ * During query execution, in some cases the system message "Error creating
+   temporary swap file name" may be displayed.
+   
+ * Delegation UID is not properly updated when set through connection dialog
+   prompt by an application.
+   
+ * The SSL configuration dialog has a visual defect. 
+ 
+ * The driver manager may not be automatically discovered on Ubuntu platforms.
+   
+ * The Table Type Only catalog function with GetMetadataWithQueries=true
+   displays repeat results.
+   
+   
+1.3.16 ----------------------------------------------------------------------
+
+Released 2018-01-31
+
+Enhancements & New Features
+
+ * Error message truncation
+
+   By default, on non-Windows platforms, the driver now truncates displayed 
+   error messages to 768 characters. This truncation prevents a known issue 
+   with the unixODBC driver manager. The full error messages are still 
+   reported in the driver log. You can alter these settings by configuring 
+   the advanced properties ForceErrorTruncation and ExceptionBufferSize. For 
+   more information, see the Installation and Configuration Guide.
+
+ * Updated Drill client support
+
+   The driver now uses Drill C++ Client 1.12.0. This version of the client 
+   offers backwards compatibility support for Plain and Basic Authentication.
+
+ * Increased default length for StringColumnLength
+
+   The default length for the StringColumnLength property is now 65535. 
+   Previously the default length was 1024.
+ 
+ * Improved Unicode support
+ 
+   The driver is now able to display Unicode characters in returned metadata
+   and error messages.   
+
+
+Resolved Issues
+The following issues were resolved in Simba Drill ODBC Driver 1.3.16.
+
+ * Invalid authentication type defaults to No Authentication.
+
+   This issue has been resolved. Now, if the driver does not recognise the 
+   specified authentication type, it throws an exception.
+
+ * TIME and TIMESTAMP fractional seconds are not properly represented.
+ 
+ * In some cases, Drill Explorer fails to retrieve data when querying tables
+   with column names that contain Unicode characters.
+
+   This issue has been resolved. The query statements that the Drill Explorer
+   uses to retrieve data have been optimized to enable more robust support for
+   Unicode characters.
+   
+
+1.3.15.1048 -----------------------------------------------------------------
+
+Released 2018-01-26
+
+Enhancements & New Features
+
+ * Updated Drill client support
+
+   The driver now uses Drill C++ Client 1.11.0.
+
+
+Resolved Issues
+The following issues were resolved in Simba Drill ODBC Driver 1.3.15.1048.
+
+ * Some maprdb files are not displayed in Drill Explorer. 
+
+
+1.3.15 ----------------------------------------------------------------------
+
+Released 2017-11-01
+
+Enhancements and New Features
+ 
+ * Support for TLS
+ 
+   The driver now supports Transport Layer Security (TLS), formerly known
+   as SSL.
+   
+ * Improved Security
+ 
+   Enhancements have made Drillbit to Drillclient connections less vulnerable
+   to spoofing attacks. As a consequence, the driver no longer supports
+   authentication against Drill 1.10 or lower.
+   
+
+1.3.14.1045 ------------------------------------------------------------------
+
+Released 2017-11-01
+
+Enhancements & New Features 
+
+ * Prefixes for log file names
+ 
+   You can now configure the driver to prefix log file names with the user 
+   name associated with the connection and the process ID of the application 
+   through which the connection is made. To enable this feature, set the 
+   UseLogPrefix connection property to 1. For more information, see the 
+   Installation and Configuration Guide.
+
+
+1.3.14 -----------------------------------------------------------------------
+
+Released 2017-10-31
+
+Enhancements and New Features
+ 
+ * Support for toggling KrbServiceName and KrbServiceHost requirement 
+ 
+   The driver can now be configured to require a Kerberos Service Name and
+   Service Host be defined. 
+  
+
+Resolved Issues
+The following issues have been resolved in Simba Drill ODBC Driver 1.3.14.
+
+ * Queries from Drill Explorer cannot be cancelled. 
+
+ * An incorrect application name is passed to server when using some versions
+   of Tableau on OSX.
+   
+   
+1.3.13 -----------------------------------------------------------------------
+
+Released 2017-08-28
+
+Resolved Issues
+The following issues have been resolved in Simba Drill ODBC Driver 1.3.13.
+
+ * In some cases, incorrect datetime literal support metadata is reported in 
+   the Apache Drill C++ client.
+
+ * When using the Drill Explorer on a Linux machine, the application  
+   displays the username/password prompt regardless of the authentication 
+   method specified.
+
+   
+1.3.12 -----------------------------------------------------------------------
+
+Released 2017-08-15
+
+Enhancements & New Features
+
+ * Updated Kerberos connection properties
+ 
+   The Service Name option (the KrbServiceName property) and the Host FQDN 
+   option (the KrbServiceHost property) are now optional. If you do not
+   specify these settings when connecting through Kerberos, the driver uses 
+   internally determined default values to connect. For more information, see 
+   the Installation and Configuration Guide.
+
+ * Minor improvements in the DSN Setup dialog box
+ 
+   Minor internal changes have been made to improve the functionality of the 
+   DSN Setup dialog box in the Windows driver.
+ 
+
+1.3.11 -----------------------------------------------------------------------
+
+Released 2017-07-14
+
+Resolved Issues
+The following issues are resolved in Simba Drill ODBC Driver 1.3.11.
+
+ * When calling SQLTables with table types that are enclosed in single
+   quotation marks ('), the driver returns incorrect results.
+
+   The driver now accepts table types enclosed in single quotation marks and
+   returns the correct results, in accordance with the ODBC specification.
+ 
+ * In some cases, when the driver tries to return a long error message in
+   response to a failed query, the driver terminates unexpectedly instead of
+   returning the error message.
+
+
+============================================================================== 

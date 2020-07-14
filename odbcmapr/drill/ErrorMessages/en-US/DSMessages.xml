@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Messages [
+  <!ELEMENT Messages (Package*)>
+
+  <!ELEMENT Package (Error*)>
+  <!ATTLIST Package ID CDATA #REQUIRED>
+  <!ATTLIST Package DefaultComponent CDATA #REQUIRED>
+
+  <!ELEMENT Error (#PCDATA)>
+  <!ATTLIST Error Key ID #REQUIRED>
+  <!ATTLIST Error Component CDATA #IMPLIED>
+  <!ATTLIST Error NativeErrorCode CDATA #REQUIRED>
+  <!ATTLIST Error Params CDATA "0">
+]>
+
+<Messages>
+    <!-- Package DS_ERROR. ID corresponds to the DS_ERROR constant defined in DriverSupport.h -->
+    <Package ID="110" DefaultComponent="DriverSupport">
+        <!-- Error thrown when an error occurs while trying to load a string resource for the dialog. -->
+        <Error Key="DSStringResourceError" Params="1" NativeErrorCode="1000">String resource %1% not found.</Error>
+
+        <!-- Error thrown when an error occurs while trying to load a cursor resource.. -->
+        <Error Key="DSCursorResourceError" Params="1" NativeErrorCode="1010">An error occurred while attempting to load a cursor: %1%</Error>
+
+        <!-- Error thrown when an error occurs while trying to encrypt data. -->
+        <Error Key="DSEncryptError" Params="1" NativeErrorCode="1020">An error occurred while attempting to encrypt data: %1%</Error>
+      
+        <!-- Error thrown when an error occurs while trying to decrypt data. -->
+        <Error Key="DSDecryptError" Params="1" NativeErrorCode="1030">Failed to decrypt data: %1%</Error>
+      
+        <!-- Error thrown when an error occurs while trying to initialize SSL context. -->
+         <Error Key="DSSSLError" Params="1" NativeErrorCode="1040">Failed to initialize SSL context: %1%</Error>
+
+        <!-- Error thrown when an error occurs while converting server SSL certificate into CryptoAPI format. -->
+        <Error Key="DSSSLServerCertConvertError" Params="0" NativeErrorCode="1050">Failed to convert certificate from OpenSSL to CryptoAPI.</Error>
+
+        <!-- Error thrown when an the driver has been locked by a vendor. -->
+        <Error Key="DSDriverLockedError" Params="1" NativeErrorCode="1060">Driver has been locked by the vendor %1% and is not licensed for use with this application.</Error>
+
+        <!-- Error thrown when an the driver has been locked by a vendor. -->
+        <Error Key="DSDIDFileMissingError" Params="1" NativeErrorCode="1070">Cannot access file %1%. The driver cannot function properly without the file.</Error>
+
+        <!-- Error thrown when OpenSSL functions return an error. -->
+        <Error Key="DSOpenSSLError" Params="2" NativeErrorCode="1080">OpenSSL function %1% returned error: %2%</Error>
+
+        <!-- Error thrown when SSL verification fails because trust store does not have right CA certs to verify the server certificate. -->
+        <Error Key="DSSslNoCaError" Params="0" NativeErrorCode="1090">SSL certificate verification failed because the certificate is missing or incorrect.</Error>
+
+        <!-- Error thrown when cURL is not able to receive the expected response from the server due to either incorrect host/port specified or SSL not enabled for connection when connecting to SSL enabled server. -->
+        <Error Key="DSCurlRecvError" Params="0" NativeErrorCode="1100">Unexpected response received from server. Please ensure the server host and port specified for the connection are correct and confirm if SSL should be enabled for the connection.</Error>
+
+        <!-- Error thrown when server host name does not match server SSL certificate subject common name (CN) or any of the "DNS Name" entries in the "Subject Alternative Name". -->
+        <Error Key="DSServerHostAndCnSubjectMismatch" Params="0" NativeErrorCode="1110">SSL verification failed because the server host name specified for the connection does not match the "CN" entry in the "Subject" field or any of the "DNS Name" entries of the "Subject Alternative Name" field in the server certificate.</Error>
+
+        <!-- Error thrown when enabling SSL for the connection when connecting to a server that has not enabled SSL.-->
+        <Error Key="DSSslConnectionToNonSslServerError" Params="0" NativeErrorCode="1120">Cannot enable SSL for the connection when connecting to a server that has not enabled SSL.</Error>
+
+        <!-- Error thrown when CA certificates can not be read from the CA certificates file. -->
+        <Error Key="DSCaCertsFileLoadError" Params="0" NativeErrorCode="1130">Unable to load CA certificates from certs file location.  Please ensure the file exists, has read permission, and has the correct PEM format.</Error>
+      
+        <!-- Error thrown when enabling SSL for the connection when connecting to a server that has not enabled SSL or if server has been configured to use SSLv2 or SSLv3 but they are not allowed by the driver.-->
+        <Error Key="DSSslConnectErrorSsl2AndSsl3NotAllowed" Params="0" NativeErrorCode="1140">Cannot enable SSL for the connection when connecting to a server that has not enabled SSL. If the server has SSL enabled, please check if it has been configured to use SSLv2 or SSLv3 protocols. SSLv2 and SSLv3 protocols are not allowed by the driver as they are insecure.</Error>
+
+        <!-- Error thrown when enabling SSL for the connection when connecting to a server that has not enabled SSL or if server has been configured to use SSL protocol version lower than what is allowed by the connection.-->
+        <Error Key="DSSslConnectErrorLowerThanMinTls" Params="1" NativeErrorCode="1150">Cannot enable SSL for the connection when connecting to a server that has not enabled SSL. If the server has SSL enabled, please check if it has been configured to use a SSL protocol version that is lower than what is allowed for the connection. The minimum SSL protocol version allowed for the connection is: %1%.</Error>
+    </Package>
+</Messages>

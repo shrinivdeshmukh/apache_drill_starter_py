@@ -1,0 +1,3 @@
+pyodbc==4.0.26
+pyspark==2.4.4
+jupyter==1.0.0

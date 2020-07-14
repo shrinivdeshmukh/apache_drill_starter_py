@@ -1,0 +1,132 @@
+version: '3.5'
+
+services:
+  
+  drill1:
+    image: drill:latest
+    build:
+      context: ./drill
+      dockerfile: Dockerfile
+    working_dir: /usr/local/drill
+    ports:
+      - 8047:8047
+    container_name: drill
+    networks: 
+      drillspark:
+        ipv4_address: 10.3.0.2
+    depends_on:
+      - zoo
+    command: /bin/bash -c "bin/drillbit.sh --config conf/ start && tail -F conf/drill-override.conf"
+
+  drill2:
+    image: drill:latest
+    working_dir: /usr/local/drill
+    ports:
+      - 8048:8047
+    networks: 
+      drillspark:
+        ipv4_address: 10.3.0.9
+    depends_on:
+      - zoo
+      - drill1
+    command: /bin/bash -c "bin/drillbit.sh --config conf/ start && tail -F log/drillbit.out"
+
+  drill3:
+    image: drill:latest
+    working_dir: /usr/local/drill
+    ports:
+      - 8049:8047
+    networks: 
+      drillspark:
+        ipv4_address: 10.3.0.10
+    depends_on:
+      - zoo
+      - drill1
+      - drill2
+    command: /bin/bash -c "bin/drillbit.sh --config conf/ start && tail -F log/drillbit.out"
+
+  jupyter:
+    image: jupyter/spark-drill
+    build:
+      context: ./jupyter-spark-drill
+      dockerfile: Dockerfile
+    # user: root
+    networks:
+      drillspark:
+        ipv4_address: 10.3.0.3
+    container_name: notebook
+    volumes:
+      - ./odbcmapr/:/opt/mapr/
+    ports:
+      - 8899:8888
+    depends_on:
+      - zoo
+      - drill1
+
+  zoo:
+    image: bitnami/zookeeper:latest
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks: 
+      drillspark:
+        ipv4_address: 10.3.0.4
+    container_name: zoo
+    ports:
+      - '2181:2181'
+
+  hdfs:
+    image: hdfs-spark-hive:latest
+    # build:
+    #   context: ./spark-hive-docker
+    #   dockerfile: Dockerfile
+    environment:
+      HADOOP_USER: ${HADOOP_USER}
+    ports:
+      - 50070:50070
+      - 8020:8020
+      - 8088:8088
+      - 8032:8032
+    volumes:
+      - hdfs:/hadoop/hdfs
+      - mysql:/mnt/mysql
+    container_name: hdfs
+    networks:
+      drillspark:
+        ipv4_address: 10.3.0.5
+    depends_on:
+      - mysql
+    environment:
+      JAVA_HOME: /usr/local/openjdk-8
+      HADOOP_HOME: /usr/local/hadoop
+      SPARK_HOME: /usr/local/spark
+      HIVE_HOME: /usr/local/hive
+    working_dir: /usr/local/hadoop/
+
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${HIVE_METASTORE_PASSWORD}
+    volumes:
+      - mysql:/var/lib/mysql
+    container_name: mysql
+    networks:
+      drillspark:
+        ipv4_address: 10.3.0.6
+    security_opt:
+          - seccomp:unconfined
+    command: --default-authentication-plugin=mysql_native_password
+
+networks:
+  drillspark:
+    driver: bridge
+    name: drillspark
+    ipam:
+     config:
+       - subnet: 10.3.0.0/20
+            # gateway: 10.0.0.1
+
+volumes:
+  hdfs:
+  mysql:

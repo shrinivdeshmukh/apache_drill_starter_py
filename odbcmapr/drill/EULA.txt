@@ -1,0 +1,89 @@
+FREE SOFTWARE LICENSE AGREEMENT
+IMPORTANT - READ CAREFULLY: This Free Software License Agreement ("Agreement") is a legal agreement 
+between you (an individual or a single entity) and MapR Technologies, Inc. ("MAPR").  BY CLICKING A 
+BUTTON AND/OR BOX INDICATING YOUR ACCEPTANCE OR BY RESPONDING AFFIRMATIVELY TO THE APPLICABLE 
+COMMAND LINE PROMPT, BY EXECUTING AN ORDER FORM THAT REFERENCES THIS AGREEMENT, AND/OR BY USING THE 
+SOFTWARE ACCOMPANIED BY THESE TERMS ("SOFTWARE"), YOU AGREE TO THE TERMS OF THIS AGREEMENT. YOU 
+REPRESENT THAT YOU HAVE THE AUTHORITY TO BIND TO THESE TERMS THE COMPANY OR OTHER LEGAL ENTITY ON 
+WHOSE BEHALF YOU ARE ENTERING INTO THIS AGREEMENT. THE WORD "CUSTOMER" SHALL REFER HEREIN TO SUCH 
+ENTITY AND ITS AFFILIATES. IF YOU DO NOT HAVE SUCH AUTHORITY, OR IF YOU DO NOT AGREE WITH THESE 
+TERMS, YOU MUST NOT ACCEPT THIS AGREEMENT AND MAY NOT USE THE SOFTWARE. 
+1. License. Subject to Customer's compliance with this Agreement, MapR grants Customer a limited, 
+non-transferable, non-assignable, non-sublicensable, royalty-free license to copy and use the 
+Software internally, in accordance with the criteria and subject to the technical conditions and 
+dependencies and the functionality and time limitations specified by MapR.  All the copies of the 
+Software made hereunder are licensed, not sold.  For the avoidance of doubt, Customer may not grant 
+access to or transfer the use of the Software to any third party, whether by itself or as integrated 
+in or with another product.  
+2. Restrictions. Customer shall only use the Software in conjunction with the MapR Product and not 
+on a standalone basis.  For avoidance of doubt, Customer is not authorized to use the Software with 
+other distributions for Apache Hadoop. For purposes of this Agreement, the "MapR Product" shall mean 
+the MapR Distribution for Apache Hadoop. 
+3. No Support. Customer acknowledges that MapR is not obligated to provide any support, maintenance, 
+updates or upgrades for the Software and its use hereunder.  
+4. Term.  This Agreement will be in effect until terminated in accordance with this section. Either 
+party may terminate this Agreement for convenience upon 45 days notice.  MapR may immediately 
+terminate this Agreement if Customer materially breaches any provision of this Agreement. Unless 
+otherwise agreed by the parties, upon the expiration or termination of this Agreement Customer will 
+discontinue all use of the Software and will return to MapR any materials provided by MapR to 
+Customer.  Sections 5, 6, 8, 9, 10, and 11 and 12 will survive termination or expiration of this 
+Agreement.
+5. Software Ownership.  MapR or its licensors retain all right, title, and interest, including all 
+intellectual property rights, in and to the Software, including any improvements, modifications, and 
+enhancements to it.  Except for those rights expressly granted in this Agreement, no other rights 
+are granted, whether express or implied.  
+6. Open Source Software.  The Software may contain or be provided together with open source 
+software.  Each item of open source software is subject to its own applicable license terms, which 
+can be found in either the Software documentation or the applicable help, notices, about or source 
+files.  Copyrights to the open source software are held by the copyright holders indicated in the 
+documentation or the applicable help, notices, about or source files.
+7. Feedback. Customer may provide feedback to MapR concerning the functionality and performance of 
+the Software as reasonably requested by MapR, including identifying potential errors and 
+improvements ("Feedback"). Customer hereby assigns to MapR all right, title, and interest in and to 
+the Feedback.
+8. Confidentiality.  Customer will maintain the confidentiality of and not disclose to third 
+parties: (a) the non-public information disclosed by MapR to Customer under this Agreement, and (b) 
+all Feedback and all Software functionality information and performance data.  Customer shall not 
+reverse engineer or otherwise attempt to derive the source code or underlying algorithms or 
+structure of the Software, except to the extent such prohibition is not permitted under an 
+applicable law or open source license.  MapR will maintain the confidentiality of and not disclose 
+to third parties any non-public Customer materials. 
+9. Warranty Disclaimer.  THE SOFTWARE IS LICENSED FREE OF CHARGE AND THEREFORE IT IS PROVIDED 
+"AS IS", FOR LIMITED INTERNAL USE AT CUSTOMER'S OWN RISK.  MAPR DOES NOT WARRANT THAT THE SOFTWARE 
+WILL OPERATE WITHOUT ERROR OR INTERRUPTION.  MAPR SPECIFICALLY DISCLAIMS ALL WARRANTIES RELATING TO 
+THE SOFTWARE AND ANY RELATED PROFESSIONAL SERVICES, EXPRESS OR IMPLIED, INCLUDING THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY, NONINFRINGEMENT, QUALITY, ACCURACY, AND FITNESS FOR A PARTICULAR 
+PURPOSE.
+10. Limitation of Liability.  THE TOTAL LIABILITY OF MAPR ARISING OUT OF OR RELATED TO THIS 
+AGREEMENT WILL NOT EXCEED USD $100.  IN NO EVENT WILL MAPR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, 
+SPECIAL, OR CONSEQUENTIAL DAMAGES (INCLUDING ANY LOST PROFITS OR BUSINESS OPPORTUNITIES OR ANY LOSS 
+OF DATA), EVEN IF ADVISED OF THE POSSIBILITY OF THESE DAMAGES.  THESE LIMITATIONS WILL APPLY 
+NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY IN THIS AGREEMENT.
+11. Export.  MapR's products are subject to U.S. export and reexport control laws and regulations, 
+including the Export Administration Regulations ("EAR") maintained by the U.S. Department of 
+Commerce, trade and economic sanctions maintained by the Treasury Department's Office of Foreign 
+Assets Control ("OFAC"), and the International Traffic in Arms Regulations ("ITAR") maintained by 
+the Department of State.  Customer warrants that it is (1) not located in Cuba, Iran, North Korea, 
+Sudan, or Syria, and (2) not a denied party as specified in the regulations listed above.  Customer 
+agrees to comply with all applicable export and reexport control laws and regulations, including the 
+EAR, trade and economic sanctions maintained by OFAC, and the ITAR.  Specifically, Customer 
+covenants that it shall not, directly or indirectly, sell, export, reexport, transfer, divert, or 
+otherwise dispose of any products, software, or technology (including products derived from or based 
+on such technology) received from MapR under this Agreement to any destination, entity, or person 
+prohibited by the laws or regulations of the United States, without obtaining prior authorization 
+from the competent government authorities as required by those laws and regulations.   Customer 
+agrees to indemnify, to the fullest extent permitted by law, MapR from and against any fines or 
+penalties that may arise as a result of Customer's breach of this provision.  This export control 
+clause shall survive termination or cancellation of this Agreement.
+
+12. Miscellaneous.  This Agreement will be governed by the laws of the State of California without 
+reference to conflict of law principles.  All disputes arising out of or related to it, will be 
+subject to the exclusive jurisdiction of the state courts located in Santa Clara County, California, 
+and the federal courts located in the Northern District of California, and the parties agree and 
+submit to the personal and exclusive jurisdiction and venue of these courts. Customer will not 
+assign this Agreement, directly or indirectly, by operation of law or otherwise, without the prior 
+written consent of MapR.  This is the entire agreement between the parties relating to the subject 
+matter hereof.  No waiver or modification of this Agreement will be valid unless in writing signed 
+by each party.
+ 041712													CONFIDENTIAL
+
