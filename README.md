@@ -22,7 +22,7 @@ make start
 * Browse through http://localhost:50070 to access HDFS UI.
 
 # Step 3
-## Test the pyspark code
+## Test the code/notebook
 
 * Go to any one of the drill instances' web UI.
 * Click on the `options` tab in the top right corner.
