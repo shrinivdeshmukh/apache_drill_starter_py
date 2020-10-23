@@ -13,4 +13,6 @@ source ~/.bashrc
 
 /usr/local/hadoop/bin/hdfs dfs -chmod -R a+rwX /
 
+/usr/local/hadoop/bin/hdfs dfs -put /tmp/test.csv /
+
 tail -f /usr/local/hadoop/logs/*.out

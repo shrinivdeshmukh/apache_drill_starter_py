@@ -39,4 +39,6 @@ RUN /usr/local/hadoop/bin/hdfs namenode -format
 
 WORKDIR /usr/local/hadoop
 
+COPY test.csv /tmp/
+
 CMD ["bash", "entrypoint.sh"]
