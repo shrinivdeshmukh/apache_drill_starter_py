@@ -14,7 +14,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
+odbcmapr/drill/DrillExplorer/runtime
 lib64/
 parts/
 sdist/
