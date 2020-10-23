@@ -1,11 +1,23 @@
 # Apache drill setup with example jupyter notebook
 
-## Start all the services
+## Option 1: Start all the services
 
 ```
 docker-compose up -d
 ```
 Wait until all services are started.
+
+## Option 2: Use `Makefile` to start all the services
+
+```
+make start
+```
+
+### Build services
+
+* <b> Build a specific service: </b> <br />
+      ```SERVICE=app make build``` (replace `app` by your desired service name) <br /><br />
+* <b> Build all services: </b> <br /> `make build`
 
 ## Browse the Apache drill and HDFS UI
 
