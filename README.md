@@ -1,6 +1,7 @@
 # Apache drill setup with example jupyter notebook
 
-## Option 1: Start all the services
+# Step 1
+## Option 1: Use `docker-compose` to start all the services
 
 ```
 docker-compose up -d
@@ -19,12 +20,14 @@ make start
       ```SERVICE=app make build``` (replace `app` by your desired service name) <br /><br />
 * <b> Build all services: </b> <br /> `make build`
 
+# Step 2
 ## Browse the Apache drill and HDFS UI
 
 * Browse through http://localhost:8047, http://localhost:8048, http://localhost:8049 to access UI for the 3 drill instances.
 
 * Browse through http://localhost:50070 to access HDFS UI.
 
+# Step 3
 ## Test the pyspark code
 
 * Go to any one of the drill instances' web UI.
