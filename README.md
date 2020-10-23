@@ -36,6 +36,6 @@ make start
 * Change the URL from `file:///` to `hdfs://hdfs:8020`
 * In the `formats`-> `csv` section, add the line `"extractHeader": true,` after `"type": "text`
 * upload any csv to `/` folder in `HDFS`
-* Open the jupyter notebook on http://localhost:8889. You can get the token for logging in to jupyter by issuing:
+* Open the jupyter notebook on http://localhost:8899. You can get the token for logging in to jupyter by issuing:
 `docker-compose logs -f jupyter` command.
 * Execute all the cells.
