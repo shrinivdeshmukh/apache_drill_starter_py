@@ -14,12 +14,6 @@ Wait until all services are started.
 make start
 ```
 
-### Build services
-
-* <b> Build a specific service: </b> <br />
-      ```SERVICE=app make build``` (replace `app` by your desired service name) <br /><br />
-* <b> Build all services: </b> <br /> `make build`
-
 # Step 2
 ## Browse the Apache drill and HDFS UI
 
