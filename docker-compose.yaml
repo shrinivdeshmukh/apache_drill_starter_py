@@ -112,6 +112,7 @@ services:
       JAVA_HOME: /usr/local/openjdk-8
       HADOOP_HOME: /usr/local/hadoop
     working_dir: /usr/local/hadoop/
+    command: "tail -F out.log"
 
   mysql:
     image: mysql:8

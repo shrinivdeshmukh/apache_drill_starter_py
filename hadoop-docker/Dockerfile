@@ -26,6 +26,9 @@ COPY mapred-site.xml /usr/local/hadoop/etc/hadoop/mapred-site.xml
 
 COPY yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml
 
+COPY entrypoint.sh /usr/local/hadoop/
+
+COPY ssh_config /root/.ssh/config
 # RUN apt-get -y install sudo
 
 # RUN useradd -ms /bin/bash shrinivasdeshmukh && echo "shrinivasdeshmukh:shrinivasdeshmukh" | chpasswd && adduser shrinivasdeshmukh root
@@ -34,3 +37,6 @@ COPY yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml
 
 RUN /usr/local/hadoop/bin/hdfs namenode -format
 
+WORKDIR /usr/local/hadoop
+
+CMD ["bash", "entrypoint.sh"]
