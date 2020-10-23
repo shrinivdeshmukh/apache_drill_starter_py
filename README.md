@@ -31,8 +31,8 @@ make start
 * Go to `Storage` tab in the top left menu bar
 * Click on `update` button for the `dfs` storage
 * Change the URL from `file:///` to `hdfs://hdfs:8020`
-* In the `formats`-> `csv` section, add the line `"extractHeader": true,` after `"type": "text`
-* upload any csv to `/` folder in `HDFS`
+* In the `formats`-> `csv` section, after `"type": "text`, add the line `"extractHeader": true,`
+* Click `Update` button at the bottom.
 * Open the jupyter notebook on http://localhost:8899. You can get the token for logging in to jupyter by issuing:<br />
 `docker-compose logs -f jupyter` command.
 * Execute all the cells.
