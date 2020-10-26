@@ -1,5 +1,5 @@
 build:
-	docker-compose build ${SERVICE}
+	docker-compose build ${service}
 
 start:
 	docker-compose up -d
@@ -11,7 +11,7 @@ clean:
 	docker-compose down -v
 
 logs:
-	docker-compose logs -f ${SERVICE}
+	docker-compose logs -f ${service}
 
 token: 
 	docker-compose logs -f jupyter
