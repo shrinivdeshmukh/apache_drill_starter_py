@@ -15,4 +15,6 @@ source ~/.bashrc
 
 /usr/local/hadoop/bin/hdfs dfs -put /tmp/test.csv /
 
+/usr/local/hadoop/bin/hdfs dfs -put /tmp/data.json /
+
 tail -f /usr/local/hadoop/logs/*.out
