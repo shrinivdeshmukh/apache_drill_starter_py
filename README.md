@@ -20,6 +20,7 @@ make start
 * Browse through http://localhost:8047, http://localhost:8048, http://localhost:8049 to access UI for the 3 drill instances.
 
 * Browse through http://localhost:50070 to access HDFS UI.
+#### NOTE: It takes about 30 seconds to 1 minute for all services to start
 
 # Step 3
 ## Test the code/notebook
