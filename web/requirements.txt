@@ -9,7 +9,7 @@ pydantic==1.6.2
 pydrill==0.3.4
 requests==2.24.0
 starlette==0.13.4
-urllib3==1.25.9
+urllib3==1.26.5
 uvicorn
 uvloop==0.14.0
 websockets==8.1
